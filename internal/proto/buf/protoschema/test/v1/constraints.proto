@@ -1,4 +1,4 @@
-// Copyright 2024-2025 Buf Technologies, Inc.
+// Copyright 2024-2026 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -261,7 +261,7 @@ message ConstraintTest {
       ]
     }];
   }
-  OneOfRequired one_of_required = 125;
+  OneOfRequired one_of_required = 127;
   OneOfOptional one_of_optional = 126;
 
   fixed32 const_fixed32 = 86 [(buf.validate.field).fixed32.const = 5];
@@ -338,6 +338,11 @@ message ConstraintTest {
       }
     }
   }];
+
+  repeated string is_list = 125 [
+    (buf.validate.field).repeated.min_items = 1,
+    (buf.validate.field).repeated.max_items = 10
+  ];
 }
 
 message ConstraintTests {

@@ -1,4 +1,4 @@
-// Copyright 2024-2025 Buf Technologies, Inc.
+// Copyright 2024-2026 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -188,7 +188,7 @@ type ConstraintTest struct {
 	//	*ConstraintTest_GteSfixed64
 	//	*ConstraintTest_InSfixed64
 	TestCase      isConstraintTest_TestCase     `protobuf_oneof:"test_case"`
-	OneOfRequired *ConstraintTest_OneOfRequired `protobuf:"bytes,125,opt,name=one_of_required,json=oneOfRequired,proto3" json:"one_of_required,omitempty"`
+	OneOfRequired *ConstraintTest_OneOfRequired `protobuf:"bytes,127,opt,name=one_of_required,json=oneOfRequired,proto3" json:"one_of_required,omitempty"`
 	OneOfOptional *ConstraintTest_OneOfOptional `protobuf:"bytes,126,opt,name=one_of_optional,json=oneOfOptional,proto3" json:"one_of_optional,omitempty"`
 	ConstFixed32  uint32                        `protobuf:"fixed32,86,opt,name=const_fixed32,json=constFixed32,proto3" json:"const_fixed32,omitempty"`
 	LtFixed32     uint32                        `protobuf:"fixed32,87,opt,name=lt_fixed32,json=ltFixed32,proto3" json:"lt_fixed32,omitempty"`
@@ -219,6 +219,7 @@ type ConstraintTest struct {
 	FiniteFloat   float32                       `protobuf:"fixed32,112,opt,name=finite_float,json=finiteFloat,proto3" json:"finite_float,omitempty"`
 	LtGtFloat     float32                       `protobuf:"fixed32,113,opt,name=lt_gt_float,json=ltGtFloat,proto3" json:"lt_gt_float,omitempty"`
 	InMap         map[string]string             `protobuf:"bytes,118,rep,name=in_map,json=inMap,proto3" json:"in_map,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	IsList        []string                      `protobuf:"bytes,125,rep,name=is_list,json=isList,proto3" json:"is_list,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1332,6 +1333,13 @@ func (x *ConstraintTest) GetInMap() map[string]string {
 	return nil
 }
 
+func (x *ConstraintTest) GetIsList() []string {
+	if x != nil {
+		return x.IsList
+	}
+	return nil
+}
+
 type isConstraintTest_TestCase interface {
 	isConstraintTest_TestCase()
 }
@@ -2194,7 +2202,7 @@ var File_buf_protoschema_test_v1_constraints_proto protoreflect.FileDescriptor
 
 const file_buf_protoschema_test_v1_constraints_proto_rawDesc = "" +
 	"\n" +
-	")buf/protoschema/test/v1/constraints.proto\x12\x17buf.protoschema.test.v1\x1a\x1bbuf/validate/validate.proto\"\xc8;\n" +
+	")buf/protoschema/test/v1/constraints.proto\x12\x17buf.protoschema.test.v1\x1a\x1bbuf/validate/validate.proto\"\xed;\n" +
 	"\x0eConstraintTest\x12g\n" +
 	"\x11required_implicit\x18\x01 \x01(\v28.buf.protoschema.test.v1.ConstraintTest.RequiredImplicitH\x00R\x10requiredImplicit\x12g\n" +
 	"\x11required_optional\x18\x02 \x01(\v28.buf.protoschema.test.v1.ConstraintTest.RequiredOptionalH\x00R\x10requiredOptional\x12(\n" +
@@ -2341,7 +2349,7 @@ const file_buf_protoschema_test_v1_constraints_proto_rawDesc = "" +
 	"\fgte_sfixed64\x18T \x01(\x10B\x0e\xbaH\vb\t)\x05\x00\x00\x00\x00\x00\x00\x00H\x00R\vgteSfixed64\x12:\n" +
 	"\vin_sfixed64\x18U \x01(\x10B\x17\xbaH\x14b\x121\x01\x00\x00\x00\x00\x00\x00\x001\x02\x00\x00\x00\x00\x00\x00\x00H\x00R\n" +
 	"inSfixed64\x12]\n" +
-	"\x0fone_of_required\x18} \x01(\v25.buf.protoschema.test.v1.ConstraintTest.OneOfRequiredR\roneOfRequired\x12]\n" +
+	"\x0fone_of_required\x18\x7f \x01(\v25.buf.protoschema.test.v1.ConstraintTest.OneOfRequiredR\roneOfRequired\x12]\n" +
 	"\x0fone_of_optional\x18~ \x01(\v25.buf.protoschema.test.v1.ConstraintTest.OneOfOptionalR\roneOfOptional\x12/\n" +
 	"\rconst_fixed32\x18V \x01(\aB\n" +
 	"\xbaH\aJ\x05\r\x05\x00\x00\x00R\fconstFixed32\x12)\n" +
@@ -2406,7 +2414,10 @@ const file_buf_protoschema_test_v1_constraints_proto_rawDesc = "" +
 	"\vlt_gt_float\x18q \x01(\x02B\x0f\xbaH\f\n" +
 	"\n" +
 	"\x15\x00\x00\x80?%\x00\x00\xa0@R\tltGtFloat\x12u\n" +
-	"\x06in_map\x18v \x03(\v22.buf.protoschema.test.v1.ConstraintTest.InMapEntryB*\xbaH'\x9a\x01$\"\x0er\fR\x04key1R\x04key2*\x12r\x10R\x06value1R\x06value2R\x05inMap\x1a\xa0\x02\n" +
+	"\x06in_map\x18v \x03(\v22.buf.protoschema.test.v1.ConstraintTest.InMapEntryB*\xbaH'\x9a\x01$\"\x0er\fR\x04key1R\x04key2*\x12r\x10R\x06value1R\x06value2R\x05inMap\x12#\n" +
+	"\ais_list\x18} \x03(\tB\n" +
+	"\xbaH\a\x92\x01\x04\b\x01\x10\n" +
+	"R\x06isList\x1a\xa0\x02\n" +
 	"\x10RequiredImplicit\x12%\n" +
 	"\n" +
 	"bool_value\x18\x01 \x01(\bB\x06\xbaH\x03\xc8\x01\x01R\tboolValue\x12)\n" +

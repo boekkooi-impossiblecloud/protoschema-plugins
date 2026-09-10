@@ -97,7 +97,7 @@ message ConstraintTest {
     sfixed64 gte_sfixed64 = 84;
     sfixed64 in_sfixed64 = 85;
   }
-  optional OneOfRequired one_of_required = 125;
+  optional OneOfRequired one_of_required = 127;
   optional OneOfOptional one_of_optional = 126;
   optional fixed32 const_fixed32 = 86;
   optional fixed32 lt_fixed32 = 87;
@@ -128,6 +128,7 @@ message ConstraintTest {
   optional float finite_float = 112;
   optional float lt_gt_float = 113;
   map<string, string> in_map = 118;
+  repeated string is_list = 125;
   message RequiredImplicit {
     optional bool bool_value = 1;
     optional string string_value = 2;

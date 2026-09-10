@@ -1719,6 +1719,15 @@
           },
           "type": "object"
         },
+        "^(map_string_field_mask)$": {
+          "additionalProperties": {
+            "$ref": "#/$defs/google.protobuf.FieldMask.jsonschema.json"
+          },
+          "propertyNames": {
+            "type": "string"
+          },
+          "type": "object"
+        },
         "^(map_string_float)$": {
           "additionalProperties": {
             "anyOf": [
@@ -3245,6 +3254,12 @@
           },
           "type": "array"
         },
+        "^(repeated_field_mask)$": {
+          "items": {
+            "$ref": "#/$defs/google.protobuf.FieldMask.jsonschema.json"
+          },
+          "type": "array"
+        },
         "^(repeated_fixed32)$": {
           "items": {
             "anyOf": [
@@ -3589,6 +3604,9 @@
         },
         "^(single_duration)$": {
           "$ref": "#/$defs/google.protobuf.Duration.jsonschema.json"
+        },
+        "^(single_field_mask)$": {
+          "$ref": "#/$defs/google.protobuf.FieldMask.jsonschema.json"
         },
         "^(single_fixed32)$": {
           "anyOf": [
@@ -5465,6 +5483,15 @@
           },
           "type": "object"
         },
+        "mapStringFieldMask": {
+          "additionalProperties": {
+            "$ref": "#/$defs/google.protobuf.FieldMask.jsonschema.json"
+          },
+          "propertyNames": {
+            "type": "string"
+          },
+          "type": "object"
+        },
         "mapStringFloat": {
           "additionalProperties": {
             "anyOf": [
@@ -6991,6 +7018,12 @@
           },
           "type": "array"
         },
+        "repeatedFieldMask": {
+          "items": {
+            "$ref": "#/$defs/google.protobuf.FieldMask.jsonschema.json"
+          },
+          "type": "array"
+        },
         "repeatedFixed32": {
           "items": {
             "anyOf": [
@@ -7336,6 +7369,9 @@
         "singleDuration": {
           "$ref": "#/$defs/google.protobuf.Duration.jsonschema.json"
         },
+        "singleFieldMask": {
+          "$ref": "#/$defs/google.protobuf.FieldMask.jsonschema.json"
+        },
         "singleFixed32": {
           "anyOf": [
             {
@@ -7619,6 +7655,11 @@
       "$schema": "https://json-schema.org/draft/2020-12/schema",
       "format": "duration",
       "title": "Duration",
+      "type": "string"
+    },
+    "google.protobuf.FieldMask.jsonschema.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "title": "Field Mask",
       "type": "string"
     },
     "google.protobuf.FloatValue.jsonschema.json": {
