@@ -51,7 +51,17 @@
             },
             {
               "required": [
+                "singleNestedMessage"
+              ]
+            },
+            {
+              "required": [
                 "single_nested_enum"
+              ]
+            },
+            {
+              "required": [
+                "singleNestedEnum"
               ]
             },
             {
@@ -64,7 +74,17 @@
                   },
                   {
                     "required": [
+                      "singleNestedMessage"
+                    ]
+                  },
+                  {
+                    "required": [
                       "single_nested_enum"
+                    ]
+                  },
+                  {
+                    "required": [
+                      "singleNestedEnum"
                     ]
                   }
                 ]

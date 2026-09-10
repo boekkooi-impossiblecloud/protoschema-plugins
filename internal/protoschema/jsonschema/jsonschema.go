@@ -324,7 +324,7 @@ func (p *Generator) addOneOfConstraints(entry *msgSchema) error {
 			if p.shouldIgnoreField(field) != FieldVisible {
 				continue // Hidden and ignored fields are not advertised.
 			}
-			names = append(names, p.propertyName(field))
+			names = append(names, p.acceptedNames(field)...)
 		}
 		if len(names) == 0 {
 			continue
@@ -352,12 +352,16 @@ func (p *Generator) addOneOfConstraints(entry *msgSchema) error {
 	return nil
 }
 
-// propertyName returns the JSON object key that carries the given field.
-func (p *Generator) propertyName(field protoreflect.FieldDescriptor) string {
+// acceptedNames returns every JSON object key that may carry the given field.
+func (p *Generator) acceptedNames(field protoreflect.FieldDescriptor) []string {
+	primary, alternate := string(field.Name()), field.JSONName()
 	if p.useJSONNames {
-		return field.JSONName()
+		primary, alternate = alternate, primary
 	}
-	return string(field.Name())
+	if p.strict || primary == alternate {
+		return []string{primary}
+	}
+	return []string{primary, alternate}
 }
 
 func (p *Generator) addFieldProperties(

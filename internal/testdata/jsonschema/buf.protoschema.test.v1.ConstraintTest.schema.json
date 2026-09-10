@@ -12,7 +12,17 @@
         },
         {
           "required": [
+            "requiredImplicit"
+          ]
+        },
+        {
+          "required": [
             "required_optional"
+          ]
+        },
+        {
+          "required": [
+            "requiredOptional"
           ]
         },
         {
@@ -22,7 +32,17 @@
         },
         {
           "required": [
+            "constBool"
+          ]
+        },
+        {
+          "required": [
             "const_enum"
+          ]
+        },
+        {
+          "required": [
+            "constEnum"
           ]
         },
         {
@@ -32,7 +52,17 @@
         },
         {
           "required": [
+            "definedOnlyEnum"
+          ]
+        },
+        {
+          "required": [
             "in_enum"
+          ]
+        },
+        {
+          "required": [
+            "inEnum"
           ]
         },
         {
@@ -42,7 +72,17 @@
         },
         {
           "required": [
+            "notInEnum"
+          ]
+        },
+        {
+          "required": [
             "defined_only_not_in_enum"
+          ]
+        },
+        {
+          "required": [
+            "definedOnlyNotInEnum"
           ]
         },
         {
@@ -52,7 +92,17 @@
         },
         {
           "required": [
+            "inAndNotInEnum"
+          ]
+        },
+        {
+          "required": [
             "const_string"
+          ]
+        },
+        {
+          "required": [
+            "constString"
           ]
         },
         {
@@ -62,7 +112,17 @@
         },
         {
           "required": [
+            "lenString"
+          ]
+        },
+        {
+          "required": [
             "min_len_string"
+          ]
+        },
+        {
+          "required": [
+            "minLenString"
           ]
         },
         {
@@ -72,7 +132,17 @@
         },
         {
           "required": [
+            "maxLenString"
+          ]
+        },
+        {
+          "required": [
             "min_max_len_string"
+          ]
+        },
+        {
+          "required": [
+            "minMaxLenString"
           ]
         },
         {
@@ -82,7 +152,17 @@
         },
         {
           "required": [
+            "inString"
+          ]
+        },
+        {
+          "required": [
             "pattern_string"
+          ]
+        },
+        {
+          "required": [
+            "patternString"
           ]
         },
         {
@@ -92,7 +172,17 @@
         },
         {
           "required": [
+            "prefixString"
+          ]
+        },
+        {
+          "required": [
             "suffix_string"
+          ]
+        },
+        {
+          "required": [
+            "suffixString"
           ]
         },
         {
@@ -102,7 +192,17 @@
         },
         {
           "required": [
+            "containsString"
+          ]
+        },
+        {
+          "required": [
             "prefix_suffix_string"
+          ]
+        },
+        {
+          "required": [
+            "prefixSuffixString"
           ]
         },
         {
@@ -112,7 +212,17 @@
         },
         {
           "required": [
+            "prefixContainsSuffixString"
+          ]
+        },
+        {
+          "required": [
             "hostname_string"
+          ]
+        },
+        {
+          "required": [
+            "hostnameString"
           ]
         },
         {
@@ -122,7 +232,17 @@
         },
         {
           "required": [
+            "emailString"
+          ]
+        },
+        {
+          "required": [
             "ip_string"
+          ]
+        },
+        {
+          "required": [
+            "ipString"
           ]
         },
         {
@@ -132,7 +252,17 @@
         },
         {
           "required": [
+            "ipv4String"
+          ]
+        },
+        {
+          "required": [
             "ipv6_string"
+          ]
+        },
+        {
+          "required": [
+            "ipv6String"
           ]
         },
         {
@@ -142,7 +272,17 @@
         },
         {
           "required": [
+            "uriString"
+          ]
+        },
+        {
+          "required": [
             "uri_ref_string"
+          ]
+        },
+        {
+          "required": [
+            "uriRefString"
           ]
         },
         {
@@ -152,7 +292,17 @@
         },
         {
           "required": [
+            "addressString"
+          ]
+        },
+        {
+          "required": [
             "uuid_string"
+          ]
+        },
+        {
+          "required": [
+            "uuidString"
           ]
         },
         {
@@ -162,7 +312,17 @@
         },
         {
           "required": [
+            "tuuidString"
+          ]
+        },
+        {
+          "required": [
             "ip_with_prefixlen_string"
+          ]
+        },
+        {
+          "required": [
+            "ipWithPrefixlenString"
           ]
         },
         {
@@ -172,7 +332,17 @@
         },
         {
           "required": [
+            "ipv4WithPrefixlenString"
+          ]
+        },
+        {
+          "required": [
             "ipv6_with_prefixlen_string"
+          ]
+        },
+        {
+          "required": [
+            "ipv6WithPrefixlenString"
           ]
         },
         {
@@ -182,7 +352,17 @@
         },
         {
           "required": [
+            "ipPrefixString"
+          ]
+        },
+        {
+          "required": [
             "ipv4_prefix_string"
+          ]
+        },
+        {
+          "required": [
+            "ipv4PrefixString"
           ]
         },
         {
@@ -192,7 +372,17 @@
         },
         {
           "required": [
+            "ipv6PrefixString"
+          ]
+        },
+        {
+          "required": [
             "host_and_port_string"
+          ]
+        },
+        {
+          "required": [
+            "hostAndPortString"
           ]
         },
         {
@@ -202,7 +392,17 @@
         },
         {
           "required": [
+            "httpHeaderNameStrictString"
+          ]
+        },
+        {
+          "required": [
             "len_bytes"
+          ]
+        },
+        {
+          "required": [
+            "lenBytes"
           ]
         },
         {
@@ -212,7 +412,17 @@
         },
         {
           "required": [
+            "minLenBytes"
+          ]
+        },
+        {
+          "required": [
             "max_len_bytes"
+          ]
+        },
+        {
+          "required": [
+            "maxLenBytes"
           ]
         },
         {
@@ -222,7 +432,17 @@
         },
         {
           "required": [
+            "minMaxLenBytes"
+          ]
+        },
+        {
+          "required": [
             "const_int32"
+          ]
+        },
+        {
+          "required": [
+            "constInt32"
           ]
         },
         {
@@ -232,7 +452,17 @@
         },
         {
           "required": [
+            "ltInt32"
+          ]
+        },
+        {
+          "required": [
             "lte_int32"
+          ]
+        },
+        {
+          "required": [
+            "lteInt32"
           ]
         },
         {
@@ -242,7 +472,17 @@
         },
         {
           "required": [
+            "gtInt32"
+          ]
+        },
+        {
+          "required": [
             "gte_int32"
+          ]
+        },
+        {
+          "required": [
+            "gteInt32"
           ]
         },
         {
@@ -252,7 +492,17 @@
         },
         {
           "required": [
+            "inInt32"
+          ]
+        },
+        {
+          "required": [
             "lt_gt_int32"
+          ]
+        },
+        {
+          "required": [
+            "ltGtInt32"
           ]
         },
         {
@@ -262,7 +512,17 @@
         },
         {
           "required": [
+            "constInt64"
+          ]
+        },
+        {
+          "required": [
             "lt_int64"
+          ]
+        },
+        {
+          "required": [
+            "ltInt64"
           ]
         },
         {
@@ -272,7 +532,17 @@
         },
         {
           "required": [
+            "lteInt64"
+          ]
+        },
+        {
+          "required": [
             "gt_int64"
+          ]
+        },
+        {
+          "required": [
+            "gtInt64"
           ]
         },
         {
@@ -282,7 +552,17 @@
         },
         {
           "required": [
+            "gteInt64"
+          ]
+        },
+        {
+          "required": [
             "in_int64"
+          ]
+        },
+        {
+          "required": [
+            "inInt64"
           ]
         },
         {
@@ -292,7 +572,17 @@
         },
         {
           "required": [
+            "ltGtInt64"
+          ]
+        },
+        {
+          "required": [
             "const_uint32"
+          ]
+        },
+        {
+          "required": [
+            "constUint32"
           ]
         },
         {
@@ -302,7 +592,17 @@
         },
         {
           "required": [
+            "ltUint32"
+          ]
+        },
+        {
+          "required": [
             "lte_uint32"
+          ]
+        },
+        {
+          "required": [
+            "lteUint32"
           ]
         },
         {
@@ -312,7 +612,17 @@
         },
         {
           "required": [
+            "gtUint32"
+          ]
+        },
+        {
+          "required": [
             "gte_uint32"
+          ]
+        },
+        {
+          "required": [
+            "gteUint32"
           ]
         },
         {
@@ -322,7 +632,17 @@
         },
         {
           "required": [
+            "inUint32"
+          ]
+        },
+        {
+          "required": [
             "lt_gt_uint32"
+          ]
+        },
+        {
+          "required": [
+            "ltGtUint32"
           ]
         },
         {
@@ -332,7 +652,17 @@
         },
         {
           "required": [
+            "constUint64"
+          ]
+        },
+        {
+          "required": [
             "lt_uint64"
+          ]
+        },
+        {
+          "required": [
+            "ltUint64"
           ]
         },
         {
@@ -342,7 +672,17 @@
         },
         {
           "required": [
+            "lteUint64"
+          ]
+        },
+        {
+          "required": [
             "gt_uint64"
+          ]
+        },
+        {
+          "required": [
+            "gtUint64"
           ]
         },
         {
@@ -352,7 +692,17 @@
         },
         {
           "required": [
+            "gteUint64"
+          ]
+        },
+        {
+          "required": [
             "in_uint64"
+          ]
+        },
+        {
+          "required": [
+            "inUint64"
           ]
         },
         {
@@ -362,7 +712,17 @@
         },
         {
           "required": [
+            "ltGtUint64"
+          ]
+        },
+        {
+          "required": [
             "const_sint32"
+          ]
+        },
+        {
+          "required": [
+            "constSint32"
           ]
         },
         {
@@ -372,7 +732,17 @@
         },
         {
           "required": [
+            "ltSint32"
+          ]
+        },
+        {
+          "required": [
             "lte_sint32"
+          ]
+        },
+        {
+          "required": [
+            "lteSint32"
           ]
         },
         {
@@ -382,7 +752,17 @@
         },
         {
           "required": [
+            "gtSint32"
+          ]
+        },
+        {
+          "required": [
             "gte_sint32"
+          ]
+        },
+        {
+          "required": [
+            "gteSint32"
           ]
         },
         {
@@ -392,7 +772,17 @@
         },
         {
           "required": [
+            "inSint32"
+          ]
+        },
+        {
+          "required": [
             "const_sint64"
+          ]
+        },
+        {
+          "required": [
+            "constSint64"
           ]
         },
         {
@@ -402,7 +792,17 @@
         },
         {
           "required": [
+            "ltSint64"
+          ]
+        },
+        {
+          "required": [
             "lte_sint64"
+          ]
+        },
+        {
+          "required": [
+            "lteSint64"
           ]
         },
         {
@@ -412,7 +812,17 @@
         },
         {
           "required": [
+            "gtSint64"
+          ]
+        },
+        {
+          "required": [
             "gte_sint64"
+          ]
+        },
+        {
+          "required": [
+            "gteSint64"
           ]
         },
         {
@@ -422,7 +832,17 @@
         },
         {
           "required": [
+            "inSint64"
+          ]
+        },
+        {
+          "required": [
             "const_sfixed32"
+          ]
+        },
+        {
+          "required": [
+            "constSfixed32"
           ]
         },
         {
@@ -432,7 +852,17 @@
         },
         {
           "required": [
+            "ltSfixed32"
+          ]
+        },
+        {
+          "required": [
             "lte_sfixed32"
+          ]
+        },
+        {
+          "required": [
+            "lteSfixed32"
           ]
         },
         {
@@ -442,7 +872,17 @@
         },
         {
           "required": [
+            "gtSfixed32"
+          ]
+        },
+        {
+          "required": [
             "gte_sfixed32"
+          ]
+        },
+        {
+          "required": [
+            "gteSfixed32"
           ]
         },
         {
@@ -452,7 +892,17 @@
         },
         {
           "required": [
+            "inSfixed32"
+          ]
+        },
+        {
+          "required": [
             "const_sfixed64"
+          ]
+        },
+        {
+          "required": [
+            "constSfixed64"
           ]
         },
         {
@@ -462,7 +912,17 @@
         },
         {
           "required": [
+            "ltSfixed64"
+          ]
+        },
+        {
+          "required": [
             "lte_sfixed64"
+          ]
+        },
+        {
+          "required": [
+            "lteSfixed64"
           ]
         },
         {
@@ -472,12 +932,27 @@
         },
         {
           "required": [
+            "gtSfixed64"
+          ]
+        },
+        {
+          "required": [
             "gte_sfixed64"
           ]
         },
         {
           "required": [
+            "gteSfixed64"
+          ]
+        },
+        {
+          "required": [
             "in_sfixed64"
+          ]
+        },
+        {
+          "required": [
+            "inSfixed64"
           ]
         },
         {
@@ -490,7 +965,17 @@
               },
               {
                 "required": [
+                  "requiredImplicit"
+                ]
+              },
+              {
+                "required": [
                   "required_optional"
+                ]
+              },
+              {
+                "required": [
+                  "requiredOptional"
                 ]
               },
               {
@@ -500,7 +985,17 @@
               },
               {
                 "required": [
+                  "constBool"
+                ]
+              },
+              {
+                "required": [
                   "const_enum"
+                ]
+              },
+              {
+                "required": [
+                  "constEnum"
                 ]
               },
               {
@@ -510,7 +1005,17 @@
               },
               {
                 "required": [
+                  "definedOnlyEnum"
+                ]
+              },
+              {
+                "required": [
                   "in_enum"
+                ]
+              },
+              {
+                "required": [
+                  "inEnum"
                 ]
               },
               {
@@ -520,7 +1025,17 @@
               },
               {
                 "required": [
+                  "notInEnum"
+                ]
+              },
+              {
+                "required": [
                   "defined_only_not_in_enum"
+                ]
+              },
+              {
+                "required": [
+                  "definedOnlyNotInEnum"
                 ]
               },
               {
@@ -530,7 +1045,17 @@
               },
               {
                 "required": [
+                  "inAndNotInEnum"
+                ]
+              },
+              {
+                "required": [
                   "const_string"
+                ]
+              },
+              {
+                "required": [
+                  "constString"
                 ]
               },
               {
@@ -540,7 +1065,17 @@
               },
               {
                 "required": [
+                  "lenString"
+                ]
+              },
+              {
+                "required": [
                   "min_len_string"
+                ]
+              },
+              {
+                "required": [
+                  "minLenString"
                 ]
               },
               {
@@ -550,7 +1085,17 @@
               },
               {
                 "required": [
+                  "maxLenString"
+                ]
+              },
+              {
+                "required": [
                   "min_max_len_string"
+                ]
+              },
+              {
+                "required": [
+                  "minMaxLenString"
                 ]
               },
               {
@@ -560,7 +1105,17 @@
               },
               {
                 "required": [
+                  "inString"
+                ]
+              },
+              {
+                "required": [
                   "pattern_string"
+                ]
+              },
+              {
+                "required": [
+                  "patternString"
                 ]
               },
               {
@@ -570,7 +1125,17 @@
               },
               {
                 "required": [
+                  "prefixString"
+                ]
+              },
+              {
+                "required": [
                   "suffix_string"
+                ]
+              },
+              {
+                "required": [
+                  "suffixString"
                 ]
               },
               {
@@ -580,7 +1145,17 @@
               },
               {
                 "required": [
+                  "containsString"
+                ]
+              },
+              {
+                "required": [
                   "prefix_suffix_string"
+                ]
+              },
+              {
+                "required": [
+                  "prefixSuffixString"
                 ]
               },
               {
@@ -590,7 +1165,17 @@
               },
               {
                 "required": [
+                  "prefixContainsSuffixString"
+                ]
+              },
+              {
+                "required": [
                   "hostname_string"
+                ]
+              },
+              {
+                "required": [
+                  "hostnameString"
                 ]
               },
               {
@@ -600,7 +1185,17 @@
               },
               {
                 "required": [
+                  "emailString"
+                ]
+              },
+              {
+                "required": [
                   "ip_string"
+                ]
+              },
+              {
+                "required": [
+                  "ipString"
                 ]
               },
               {
@@ -610,7 +1205,17 @@
               },
               {
                 "required": [
+                  "ipv4String"
+                ]
+              },
+              {
+                "required": [
                   "ipv6_string"
+                ]
+              },
+              {
+                "required": [
+                  "ipv6String"
                 ]
               },
               {
@@ -620,7 +1225,17 @@
               },
               {
                 "required": [
+                  "uriString"
+                ]
+              },
+              {
+                "required": [
                   "uri_ref_string"
+                ]
+              },
+              {
+                "required": [
+                  "uriRefString"
                 ]
               },
               {
@@ -630,7 +1245,17 @@
               },
               {
                 "required": [
+                  "addressString"
+                ]
+              },
+              {
+                "required": [
                   "uuid_string"
+                ]
+              },
+              {
+                "required": [
+                  "uuidString"
                 ]
               },
               {
@@ -640,7 +1265,17 @@
               },
               {
                 "required": [
+                  "tuuidString"
+                ]
+              },
+              {
+                "required": [
                   "ip_with_prefixlen_string"
+                ]
+              },
+              {
+                "required": [
+                  "ipWithPrefixlenString"
                 ]
               },
               {
@@ -650,7 +1285,17 @@
               },
               {
                 "required": [
+                  "ipv4WithPrefixlenString"
+                ]
+              },
+              {
+                "required": [
                   "ipv6_with_prefixlen_string"
+                ]
+              },
+              {
+                "required": [
+                  "ipv6WithPrefixlenString"
                 ]
               },
               {
@@ -660,7 +1305,17 @@
               },
               {
                 "required": [
+                  "ipPrefixString"
+                ]
+              },
+              {
+                "required": [
                   "ipv4_prefix_string"
+                ]
+              },
+              {
+                "required": [
+                  "ipv4PrefixString"
                 ]
               },
               {
@@ -670,7 +1325,17 @@
               },
               {
                 "required": [
+                  "ipv6PrefixString"
+                ]
+              },
+              {
+                "required": [
                   "host_and_port_string"
+                ]
+              },
+              {
+                "required": [
+                  "hostAndPortString"
                 ]
               },
               {
@@ -680,7 +1345,17 @@
               },
               {
                 "required": [
+                  "httpHeaderNameStrictString"
+                ]
+              },
+              {
+                "required": [
                   "len_bytes"
+                ]
+              },
+              {
+                "required": [
+                  "lenBytes"
                 ]
               },
               {
@@ -690,7 +1365,17 @@
               },
               {
                 "required": [
+                  "minLenBytes"
+                ]
+              },
+              {
+                "required": [
                   "max_len_bytes"
+                ]
+              },
+              {
+                "required": [
+                  "maxLenBytes"
                 ]
               },
               {
@@ -700,7 +1385,17 @@
               },
               {
                 "required": [
+                  "minMaxLenBytes"
+                ]
+              },
+              {
+                "required": [
                   "const_int32"
+                ]
+              },
+              {
+                "required": [
+                  "constInt32"
                 ]
               },
               {
@@ -710,7 +1405,17 @@
               },
               {
                 "required": [
+                  "ltInt32"
+                ]
+              },
+              {
+                "required": [
                   "lte_int32"
+                ]
+              },
+              {
+                "required": [
+                  "lteInt32"
                 ]
               },
               {
@@ -720,7 +1425,17 @@
               },
               {
                 "required": [
+                  "gtInt32"
+                ]
+              },
+              {
+                "required": [
                   "gte_int32"
+                ]
+              },
+              {
+                "required": [
+                  "gteInt32"
                 ]
               },
               {
@@ -730,7 +1445,17 @@
               },
               {
                 "required": [
+                  "inInt32"
+                ]
+              },
+              {
+                "required": [
                   "lt_gt_int32"
+                ]
+              },
+              {
+                "required": [
+                  "ltGtInt32"
                 ]
               },
               {
@@ -740,7 +1465,17 @@
               },
               {
                 "required": [
+                  "constInt64"
+                ]
+              },
+              {
+                "required": [
                   "lt_int64"
+                ]
+              },
+              {
+                "required": [
+                  "ltInt64"
                 ]
               },
               {
@@ -750,7 +1485,17 @@
               },
               {
                 "required": [
+                  "lteInt64"
+                ]
+              },
+              {
+                "required": [
                   "gt_int64"
+                ]
+              },
+              {
+                "required": [
+                  "gtInt64"
                 ]
               },
               {
@@ -760,7 +1505,17 @@
               },
               {
                 "required": [
+                  "gteInt64"
+                ]
+              },
+              {
+                "required": [
                   "in_int64"
+                ]
+              },
+              {
+                "required": [
+                  "inInt64"
                 ]
               },
               {
@@ -770,7 +1525,17 @@
               },
               {
                 "required": [
+                  "ltGtInt64"
+                ]
+              },
+              {
+                "required": [
                   "const_uint32"
+                ]
+              },
+              {
+                "required": [
+                  "constUint32"
                 ]
               },
               {
@@ -780,7 +1545,17 @@
               },
               {
                 "required": [
+                  "ltUint32"
+                ]
+              },
+              {
+                "required": [
                   "lte_uint32"
+                ]
+              },
+              {
+                "required": [
+                  "lteUint32"
                 ]
               },
               {
@@ -790,7 +1565,17 @@
               },
               {
                 "required": [
+                  "gtUint32"
+                ]
+              },
+              {
+                "required": [
                   "gte_uint32"
+                ]
+              },
+              {
+                "required": [
+                  "gteUint32"
                 ]
               },
               {
@@ -800,7 +1585,17 @@
               },
               {
                 "required": [
+                  "inUint32"
+                ]
+              },
+              {
+                "required": [
                   "lt_gt_uint32"
+                ]
+              },
+              {
+                "required": [
+                  "ltGtUint32"
                 ]
               },
               {
@@ -810,7 +1605,17 @@
               },
               {
                 "required": [
+                  "constUint64"
+                ]
+              },
+              {
+                "required": [
                   "lt_uint64"
+                ]
+              },
+              {
+                "required": [
+                  "ltUint64"
                 ]
               },
               {
@@ -820,7 +1625,17 @@
               },
               {
                 "required": [
+                  "lteUint64"
+                ]
+              },
+              {
+                "required": [
                   "gt_uint64"
+                ]
+              },
+              {
+                "required": [
+                  "gtUint64"
                 ]
               },
               {
@@ -830,7 +1645,17 @@
               },
               {
                 "required": [
+                  "gteUint64"
+                ]
+              },
+              {
+                "required": [
                   "in_uint64"
+                ]
+              },
+              {
+                "required": [
+                  "inUint64"
                 ]
               },
               {
@@ -840,7 +1665,17 @@
               },
               {
                 "required": [
+                  "ltGtUint64"
+                ]
+              },
+              {
+                "required": [
                   "const_sint32"
+                ]
+              },
+              {
+                "required": [
+                  "constSint32"
                 ]
               },
               {
@@ -850,7 +1685,17 @@
               },
               {
                 "required": [
+                  "ltSint32"
+                ]
+              },
+              {
+                "required": [
                   "lte_sint32"
+                ]
+              },
+              {
+                "required": [
+                  "lteSint32"
                 ]
               },
               {
@@ -860,7 +1705,17 @@
               },
               {
                 "required": [
+                  "gtSint32"
+                ]
+              },
+              {
+                "required": [
                   "gte_sint32"
+                ]
+              },
+              {
+                "required": [
+                  "gteSint32"
                 ]
               },
               {
@@ -870,7 +1725,17 @@
               },
               {
                 "required": [
+                  "inSint32"
+                ]
+              },
+              {
+                "required": [
                   "const_sint64"
+                ]
+              },
+              {
+                "required": [
+                  "constSint64"
                 ]
               },
               {
@@ -880,7 +1745,17 @@
               },
               {
                 "required": [
+                  "ltSint64"
+                ]
+              },
+              {
+                "required": [
                   "lte_sint64"
+                ]
+              },
+              {
+                "required": [
+                  "lteSint64"
                 ]
               },
               {
@@ -890,7 +1765,17 @@
               },
               {
                 "required": [
+                  "gtSint64"
+                ]
+              },
+              {
+                "required": [
                   "gte_sint64"
+                ]
+              },
+              {
+                "required": [
+                  "gteSint64"
                 ]
               },
               {
@@ -900,7 +1785,17 @@
               },
               {
                 "required": [
+                  "inSint64"
+                ]
+              },
+              {
+                "required": [
                   "const_sfixed32"
+                ]
+              },
+              {
+                "required": [
+                  "constSfixed32"
                 ]
               },
               {
@@ -910,7 +1805,17 @@
               },
               {
                 "required": [
+                  "ltSfixed32"
+                ]
+              },
+              {
+                "required": [
                   "lte_sfixed32"
+                ]
+              },
+              {
+                "required": [
+                  "lteSfixed32"
                 ]
               },
               {
@@ -920,7 +1825,17 @@
               },
               {
                 "required": [
+                  "gtSfixed32"
+                ]
+              },
+              {
+                "required": [
                   "gte_sfixed32"
+                ]
+              },
+              {
+                "required": [
+                  "gteSfixed32"
                 ]
               },
               {
@@ -930,7 +1845,17 @@
               },
               {
                 "required": [
+                  "inSfixed32"
+                ]
+              },
+              {
+                "required": [
                   "const_sfixed64"
+                ]
+              },
+              {
+                "required": [
+                  "constSfixed64"
                 ]
               },
               {
@@ -940,7 +1865,17 @@
               },
               {
                 "required": [
+                  "ltSfixed64"
+                ]
+              },
+              {
+                "required": [
                   "lte_sfixed64"
+                ]
+              },
+              {
+                "required": [
+                  "lteSfixed64"
                 ]
               },
               {
@@ -950,12 +1885,27 @@
               },
               {
                 "required": [
+                  "gtSfixed64"
+                ]
+              },
+              {
+                "required": [
                   "gte_sfixed64"
                 ]
               },
               {
                 "required": [
+                  "gteSfixed64"
+                ]
+              },
+              {
+                "required": [
                   "in_sfixed64"
+                ]
+              },
+              {
+                "required": [
+                  "inSfixed64"
                 ]
               }
             ]

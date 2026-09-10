@@ -10,6 +10,11 @@
               "required": [
                 "string_field"
               ]
+            },
+            {
+              "required": [
+                "stringField"
+              ]
             }
           ]
         }
