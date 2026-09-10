@@ -1,81 +1,5 @@
 {
   "$defs": {
-    "buf.protoschema.test.v1.ConstraintTest.OneOfOptional.jsonschema.strict.json": {
-      "$schema": "https://json-schema.org/draft/2020-12/schema",
-      "additionalProperties": false,
-      "allOf": [
-        {
-          "oneOf": [
-            {
-              "required": [
-                "id"
-              ]
-            },
-            {
-              "required": [
-                "name"
-              ]
-            },
-            {
-              "not": {
-                "anyOf": [
-                  {
-                    "required": [
-                      "id"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "name"
-                    ]
-                  }
-                ]
-              }
-            }
-          ]
-        }
-      ],
-      "properties": {
-        "id": {
-          "type": "string"
-        },
-        "name": {
-          "type": "string"
-        }
-      },
-      "title": "One Of Optional",
-      "type": "object"
-    },
-    "buf.protoschema.test.v1.ConstraintTest.OneOfRequired.jsonschema.strict.json": {
-      "$schema": "https://json-schema.org/draft/2020-12/schema",
-      "additionalProperties": false,
-      "allOf": [
-        {
-          "oneOf": [
-            {
-              "required": [
-                "id"
-              ]
-            },
-            {
-              "required": [
-                "name"
-              ]
-            }
-          ]
-        }
-      ],
-      "properties": {
-        "id": {
-          "type": "string"
-        },
-        "name": {
-          "type": "string"
-        }
-      },
-      "title": "One Of Required",
-      "type": "object"
-    },
     "buf.protoschema.test.v1.ConstraintTest.RequiredImplicit.jsonschema.strict.json": {
       "$schema": "https://json-schema.org/draft/2020-12/schema",
       "additionalProperties": false,
@@ -1898,12 +1822,6 @@
           ],
           "title": "Enum",
           "type": "string"
-        },
-        "oneOfOptional": {
-          "$ref": "#/$defs/buf.protoschema.test.v1.ConstraintTest.OneOfOptional.jsonschema.strict.json"
-        },
-        "oneOfRequired": {
-          "$ref": "#/$defs/buf.protoschema.test.v1.ConstraintTest.OneOfRequired.jsonschema.strict.json"
         },
         "patternString": {
           "pattern": "^pat*ern$",

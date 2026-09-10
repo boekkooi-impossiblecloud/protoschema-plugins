@@ -1741,12 +1741,6 @@
       "title": "Enum",
       "type": "string"
     },
-    "oneOfOptional": {
-      "$ref": "buf.protoschema.test.v1.ConstraintTest.OneOfOptional.jsonschema.strict.json"
-    },
-    "oneOfRequired": {
-      "$ref": "buf.protoschema.test.v1.ConstraintTest.OneOfRequired.jsonschema.strict.json"
-    },
     "patternString": {
       "pattern": "^pat*ern$",
       "type": "string"

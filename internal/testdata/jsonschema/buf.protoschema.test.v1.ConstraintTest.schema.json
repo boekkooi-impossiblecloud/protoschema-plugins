@@ -2407,12 +2407,6 @@
       ],
       "title": "Enum"
     },
-    "^(oneOfOptional)$": {
-      "$ref": "buf.protoschema.test.v1.ConstraintTest.OneOfOptional.schema.json"
-    },
-    "^(oneOfRequired)$": {
-      "$ref": "buf.protoschema.test.v1.ConstraintTest.OneOfRequired.schema.json"
-    },
     "^(patternString)$": {
       "pattern": "^pat*ern$",
       "type": "string"
@@ -3898,12 +3892,6 @@
         }
       ],
       "title": "Enum"
-    },
-    "one_of_optional": {
-      "$ref": "buf.protoschema.test.v1.ConstraintTest.OneOfOptional.schema.json"
-    },
-    "one_of_required": {
-      "$ref": "buf.protoschema.test.v1.ConstraintTest.OneOfRequired.schema.json"
     },
     "pattern_string": {
       "pattern": "^pat*ern$",

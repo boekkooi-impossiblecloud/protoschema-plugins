@@ -15,7 +15,6 @@
 package jsonschema
 
 import (
-	"errors"
 	"fmt"
 	"maps"
 	"math"
@@ -25,7 +24,6 @@ import (
 
 	"buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
 	"buf.build/go/protovalidate"
-	"google.golang.org/protobuf/proto"
 	"google.golang.org/protobuf/reflect/protoreflect"
 )
 
@@ -265,32 +263,13 @@ func (p *Generator) generateMessage(entry *msgSchema) error {
 	entry.schema["type"] = jsObject
 	p.setDescription(entry.desc, entry.schema)
 
-	var oneOfRules []*validate.MessageOneofRule
-	rules, err := protovalidate.ResolveMessageRules(entry.desc)
-	if err != nil {
-		return err
-	}
-	if rules != nil {
-		oneOfRules = append(oneOfRules, rules.GetOneof()...)
-	}
-
 	var required []string
 	properties := make(map[string]any)
 	patternProperties := make(map[string]any)
-	fieldPropertiesNames := make(map[protoreflect.Name]string)
 	for i := range entry.desc.Fields().Len() {
 		field := entry.desc.Fields().Get(i)
-
-		// If this is a one fields add it as a oneOf message rule
-		if oneOfRule, err := p.fieldOneOfToMessageRule(field); err != nil {
-			return err
-		} else if oneOfRule != nil {
-			oneOfRules = append(oneOfRules, oneOfRule)
-		}
-
 		visibility := p.shouldIgnoreField(field)
 		if visibility == FieldIgnore {
-			fieldPropertiesNames[field.Name()] = ""
 			continue
 		}
 		rules, err := p.getFieldRules(field)
@@ -312,12 +291,7 @@ func (p *Generator) generateMessage(entry *msgSchema) error {
 			return fmt.Errorf("failed to generate field %q: %w", field.FullName(), err)
 		}
 		// Add the field schema to the properties.
-		fieldProperty, aliases := p.getFieldPropertyNames(field, visibility == FieldHide)
-		fieldPropertiesNames[field.Name()] = fieldProperty
-		if fieldProperty != "" {
-			properties[fieldProperty] = fieldSchema
-		}
-
+		aliases := p.addFieldProperties(field, visibility == FieldHide, fieldSchema, properties)
 		// Add any aliases to the pattern properties.
 		if !p.strict && len(aliases) > 0 {
 			pattern := "^(" + strings.Join(aliases, "|") + ")$"
@@ -332,145 +306,92 @@ func (p *Generator) generateMessage(entry *msgSchema) error {
 	if len(required) > 0 {
 		entry.schema["required"] = required
 	}
-
-	return p.addOneOfConstraintsToSchema(entry.schema, fieldPropertiesNames, oneOfRules)
+	return p.addOneOfConstraints(entry)
 }
 
-func (p *Generator) fieldOneOfToMessageRule(field protoreflect.FieldDescriptor) (*validate.MessageOneofRule, error) {
-	oneOf := field.ContainingOneof()
-	if oneOf == nil {
-		return nil, nil
-	}
-	fields := oneOf.Fields()
-
-	// Only transform the first field to avoid duplicate entries
-	if fields.Len() == 0 || fields.Get(0).FullName() != field.FullName() {
-		return nil, nil
-	}
-
-	rule := validate.MessageOneofRule_builder{}
-	rule.Fields = make([]string, fields.Len())
-	for i := range fields.Len() {
-		rule.Fields[i] = string(fields.Get(i).Name())
-	}
-
-	oneOfRule, err := protovalidate.ResolveOneofRules(oneOf)
-	if err != nil {
-		return nil, err
-	}
-	if oneOfRule != nil && oneOfRule.HasRequired() {
-		rule.Required = proto.Bool(oneOfRule.GetRequired())
-	}
-	return rule.Build(), nil
-}
-
-func (p *Generator) addOneOfConstraintsToSchema(schema map[string]any, fieldProperties map[protoreflect.Name]string, rules []*validate.MessageOneofRule) error {
-	if len(rules) == 0 {
-		return nil
-	}
-
-	var required []string
-	if r, found := schema["required"]; found {
-		rs, ok := r.([]string)
-		if !ok {
-			return errors.New("invalid required field in schema")
+// addOneOfConstraints adds a mutual exclusion constraint for each oneof.
+func (p *Generator) addOneOfConstraints(entry *msgSchema) error {
+	var allOf []map[string]any
+	for oneofIndex := range entry.desc.Oneofs().Len() {
+		oneof := entry.desc.Oneofs().Get(oneofIndex)
+		if oneof.IsSynthetic() {
+			continue // Wraps a single proto3 optional field, so there is no choice.
 		}
-		required = rs
-	}
 
-	allOf := make([]any, 0, len(rules))
-	for _, rule := range rules {
-		fields := rule.GetFields()
-		properties := make([]string, 0, len(fields))
-		for _, field := range fields {
-			property, ok := fieldProperties[protoreflect.Name(field)]
-			if !ok {
-				return fmt.Errorf("failed to generate one of rule for unknown field %q", field)
+		var names []string
+		for fieldIndex := range oneof.Fields().Len() {
+			field := oneof.Fields().Get(fieldIndex)
+			if p.shouldIgnoreField(field) != FieldVisible {
+				continue // Hidden and ignored fields are not advertised.
 			}
-			if property == "" {
-				continue
-			}
-			properties = append(properties, property)
+			names = append(names, p.propertyName(field))
 		}
-		if len(properties) == 0 {
+		if len(names) == 0 {
 			continue
 		}
 
-		if len(properties) == 1 {
-			if rule.GetRequired() && !slices.Contains(required, properties[0]) {
-				required = append(required, properties[0])
-			}
-			continue
+		rules, err := protovalidate.ResolveOneofRules(oneof)
+		if err != nil {
+			return fmt.Errorf("failed to resolve rules for oneof %q: %w", oneof.FullName(), err)
 		}
-
-		oneOf := make([]map[string]any, 0, len(properties)+1)
-		for _, property := range properties {
-			oneOf = append(oneOf, map[string]any{"required": []string{property}})
+		branches := make([]map[string]any, 0, len(names)+1)
+		for _, name := range names {
+			branches = append(branches, map[string]any{"required": []string{name}})
 		}
-
-		if !rule.GetRequired() {
-			// A oneof that is not required may have no property set.
-			oneOf = append(oneOf, map[string]any{
-				"not": map[string]any{"anyOf": slices.Clone(oneOf)},
+		if !rules.GetRequired() {
+			// A oneof that is not required may have no member set.
+			branches = append(branches, map[string]any{
+				"not": map[string]any{"anyOf": slices.Clone(branches)},
 			})
 		}
-		allOf = append(allOf, map[string]any{
-			"oneOf": oneOf,
-		})
-
-		// Ensure none of the oneOf fields are required
-		required = slices.DeleteFunc(required, func(s string) bool {
-			return slices.Contains(properties, s)
-		})
-	}
-
-	if len(required) == 0 {
-		delete(schema, "required")
-	} else {
-		schema["required"] = required
+		allOf = append(allOf, map[string]any{"oneOf": branches})
 	}
 	if len(allOf) > 0 {
-		schema["allOf"] = allOf
+		entry.schema["allOf"] = allOf
 	}
-
 	return nil
 }
 
-func (p *Generator) getFieldPropertyNames(
+// propertyName returns the JSON object key that carries the given field.
+func (p *Generator) propertyName(field protoreflect.FieldDescriptor) string {
+	if p.useJSONNames {
+		return field.JSONName()
+	}
+	return string(field.Name())
+}
+
+func (p *Generator) addFieldProperties(
 	field protoreflect.FieldDescriptor,
 	hide bool,
-) (string, []string) {
-	var (
-		name    string
-		aliases []string
-	)
+	fieldSchema map[string]any,
+	properties map[string]any) []string {
 	// TODO: Add an option to include custom alias.
-	aliases = make([]string, 0, 1)
+	aliases := make([]string, 0, 1)
 	if p.useJSONNames {
 		// Add the JSON name as the primary name.
 		if hide {
 			aliases = append(aliases, field.JSONName())
 		} else {
-			name = field.JSONName()
+			properties[field.JSONName()] = fieldSchema
 		}
 		// Add the proto name as an alias.
 		if field.JSONName() != string(field.Name()) {
 			aliases = append(aliases, string(field.Name()))
 		}
-		return name, aliases
+		return aliases
 	}
 
 	// Add the proto name as the primary name.
 	if hide {
 		aliases = append(aliases, string(field.Name()))
 	} else {
-		name = string(field.Name())
+		properties[string(field.Name())] = fieldSchema
 	}
 	// Add the JSON name as an alias.
 	if field.JSONName() != string(field.Name()) {
 		aliases = append(aliases, field.JSONName())
 	}
-	return name, aliases
+	return aliases
 }
 
 func (p *Generator) setDescription(desc protoreflect.Descriptor, schema map[string]any) {

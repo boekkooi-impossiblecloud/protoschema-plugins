@@ -1,85 +1,5 @@
 {
   "$defs": {
-    "buf.protoschema.test.v1.ConstraintTest.OneOfOptional.schema.json": {
-      "$schema": "https://json-schema.org/draft/2020-12/schema",
-      "additionalProperties": false,
-      "allOf": [
-        {
-          "oneOf": [
-            {
-              "required": [
-                "id"
-              ]
-            },
-            {
-              "required": [
-                "name"
-              ]
-            },
-            {
-              "not": {
-                "anyOf": [
-                  {
-                    "required": [
-                      "id"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "name"
-                    ]
-                  }
-                ]
-              }
-            }
-          ]
-        }
-      ],
-      "properties": {
-        "id": {
-          "default": "",
-          "type": "string"
-        },
-        "name": {
-          "default": "",
-          "type": "string"
-        }
-      },
-      "title": "One Of Optional",
-      "type": "object"
-    },
-    "buf.protoschema.test.v1.ConstraintTest.OneOfRequired.schema.json": {
-      "$schema": "https://json-schema.org/draft/2020-12/schema",
-      "additionalProperties": false,
-      "allOf": [
-        {
-          "oneOf": [
-            {
-              "required": [
-                "id"
-              ]
-            },
-            {
-              "required": [
-                "name"
-              ]
-            }
-          ]
-        }
-      ],
-      "properties": {
-        "id": {
-          "default": "",
-          "type": "string"
-        },
-        "name": {
-          "default": "",
-          "type": "string"
-        }
-      },
-      "title": "One Of Required",
-      "type": "object"
-    },
     "buf.protoschema.test.v1.ConstraintTest.RequiredImplicit.schema.json": {
       "$schema": "https://json-schema.org/draft/2020-12/schema",
       "additionalProperties": false,
@@ -2728,12 +2648,6 @@
           ],
           "title": "Enum"
         },
-        "^(oneOfOptional)$": {
-          "$ref": "#/$defs/buf.protoschema.test.v1.ConstraintTest.OneOfOptional.schema.json"
-        },
-        "^(oneOfRequired)$": {
-          "$ref": "#/$defs/buf.protoschema.test.v1.ConstraintTest.OneOfRequired.schema.json"
-        },
         "^(patternString)$": {
           "pattern": "^pat*ern$",
           "type": "string"
@@ -4219,12 +4133,6 @@
             }
           ],
           "title": "Enum"
-        },
-        "one_of_optional": {
-          "$ref": "#/$defs/buf.protoschema.test.v1.ConstraintTest.OneOfOptional.schema.json"
-        },
-        "one_of_required": {
-          "$ref": "#/$defs/buf.protoschema.test.v1.ConstraintTest.OneOfRequired.schema.json"
         },
         "pattern_string": {
           "pattern": "^pat*ern$",
