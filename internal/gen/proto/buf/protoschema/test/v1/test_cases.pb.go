@@ -241,6 +241,104 @@ func (x *IgnoreField) GetNestedReference() *NestedReference {
 	return nil
 }
 
+type OneofVisibility struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Types that are valid to be assigned to Pick:
+	//
+	//	*OneofVisibility_VisibleChoice
+	//	*OneofVisibility_HiddenChoice
+	//	*OneofVisibility_IgnoredChoice
+	Pick          isOneofVisibility_Pick `protobuf_oneof:"pick"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *OneofVisibility) Reset() {
+	*x = OneofVisibility{}
+	mi := &file_buf_protoschema_test_v1_test_cases_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *OneofVisibility) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*OneofVisibility) ProtoMessage() {}
+
+func (x *OneofVisibility) ProtoReflect() protoreflect.Message {
+	mi := &file_buf_protoschema_test_v1_test_cases_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use OneofVisibility.ProtoReflect.Descriptor instead.
+func (*OneofVisibility) Descriptor() ([]byte, []int) {
+	return file_buf_protoschema_test_v1_test_cases_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *OneofVisibility) GetPick() isOneofVisibility_Pick {
+	if x != nil {
+		return x.Pick
+	}
+	return nil
+}
+
+func (x *OneofVisibility) GetVisibleChoice() string {
+	if x != nil {
+		if x, ok := x.Pick.(*OneofVisibility_VisibleChoice); ok {
+			return x.VisibleChoice
+		}
+	}
+	return ""
+}
+
+func (x *OneofVisibility) GetHiddenChoice() string {
+	if x != nil {
+		if x, ok := x.Pick.(*OneofVisibility_HiddenChoice); ok {
+			return x.HiddenChoice
+		}
+	}
+	return ""
+}
+
+func (x *OneofVisibility) GetIgnoredChoice() string {
+	if x != nil {
+		if x, ok := x.Pick.(*OneofVisibility_IgnoredChoice); ok {
+			return x.IgnoredChoice
+		}
+	}
+	return ""
+}
+
+type isOneofVisibility_Pick interface {
+	isOneofVisibility_Pick()
+}
+
+type OneofVisibility_VisibleChoice struct {
+	VisibleChoice string `protobuf:"bytes,1,opt,name=visible_choice,json=visibleChoice,proto3,oneof"`
+}
+
+type OneofVisibility_HiddenChoice struct {
+	HiddenChoice string `protobuf:"bytes,2,opt,name=hidden_choice,json=hiddenChoice,proto3,oneof"` // jsonschema:hide
+}
+
+type OneofVisibility_IgnoredChoice struct {
+	IgnoredChoice string `protobuf:"bytes,3,opt,name=ignored_choice,json=ignoredChoice,proto3,oneof"` // jsonschema:ignore
+}
+
+func (*OneofVisibility_VisibleChoice) isOneofVisibility_Pick() {}
+
+func (*OneofVisibility_HiddenChoice) isOneofVisibility_Pick() {}
+
+func (*OneofVisibility_IgnoredChoice) isOneofVisibility_Pick() {}
+
 var File_buf_protoschema_test_v1_test_cases_proto protoreflect.FileDescriptor
 
 const file_buf_protoschema_test_v1_test_cases_proto_rawDesc = "" +
@@ -264,7 +362,12 @@ const file_buf_protoschema_test_v1_test_cases_proto_rawDesc = "" +
 	"bool_field\x18\x03 \x01(\bR\tboolField\x12\x1f\n" +
 	"\vbytes_field\x18\x04 \x01(\fR\n" +
 	"bytesField\x12S\n" +
-	"\x10nested_reference\x18\x05 \x01(\v2(.buf.protoschema.test.v1.NestedReferenceR\x0fnestedReferenceB\x87\x02\n" +
+	"\x10nested_reference\x18\x05 \x01(\v2(.buf.protoschema.test.v1.NestedReferenceR\x0fnestedReference\"\x92\x01\n" +
+	"\x0fOneofVisibility\x12'\n" +
+	"\x0evisible_choice\x18\x01 \x01(\tH\x00R\rvisibleChoice\x12%\n" +
+	"\rhidden_choice\x18\x02 \x01(\tH\x00R\fhiddenChoice\x12'\n" +
+	"\x0eignored_choice\x18\x03 \x01(\tH\x00R\rignoredChoiceB\x06\n" +
+	"\x04pickB\x87\x02\n" +
 	"\x1bcom.buf.protoschema.test.v1B\x0eTestCasesProtoP\x01ZYgithub.com/bufbuild/protoschema-plugins/internal/gen/proto/buf/protoschema/test/v1;testv1\xa2\x02\x03BPT\xaa\x02\x17Buf.Protoschema.Test.V1\xca\x02\x17Buf\\Protoschema\\Test\\V1\xe2\x02#Buf\\Protoschema\\Test\\V1\\GPBMetadata\xea\x02\x1aBuf::Protoschema::Test::V1b\x06proto3"
 
 var (
@@ -279,15 +382,16 @@ func file_buf_protoschema_test_v1_test_cases_proto_rawDescGZIP() []byte {
 	return file_buf_protoschema_test_v1_test_cases_proto_rawDescData
 }
 
-var file_buf_protoschema_test_v1_test_cases_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
+var file_buf_protoschema_test_v1_test_cases_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_buf_protoschema_test_v1_test_cases_proto_goTypes = []any{
 	(*NestedReference)(nil),                   // 0: buf.protoschema.test.v1.NestedReference
 	(*CustomOptions)(nil),                     // 1: buf.protoschema.test.v1.CustomOptions
 	(*IgnoreField)(nil),                       // 2: buf.protoschema.test.v1.IgnoreField
-	(*proto3.TestAllTypes_NestedMessage)(nil), // 3: bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage
+	(*OneofVisibility)(nil),                   // 3: buf.protoschema.test.v1.OneofVisibility
+	(*proto3.TestAllTypes_NestedMessage)(nil), // 4: bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage
 }
 var file_buf_protoschema_test_v1_test_cases_proto_depIdxs = []int32{
-	3, // 0: buf.protoschema.test.v1.NestedReference.nested_message:type_name -> bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage
+	4, // 0: buf.protoschema.test.v1.NestedReference.nested_message:type_name -> bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage
 	0, // 1: buf.protoschema.test.v1.IgnoreField.nested_reference:type_name -> buf.protoschema.test.v1.NestedReference
 	2, // [2:2] is the sub-list for method output_type
 	2, // [2:2] is the sub-list for method input_type
@@ -304,13 +408,18 @@ func file_buf_protoschema_test_v1_test_cases_proto_init() {
 	file_buf_protoschema_test_v1_test_cases_proto_msgTypes[1].OneofWrappers = []any{
 		(*CustomOptions_StringField)(nil),
 	}
+	file_buf_protoschema_test_v1_test_cases_proto_msgTypes[3].OneofWrappers = []any{
+		(*OneofVisibility_VisibleChoice)(nil),
+		(*OneofVisibility_HiddenChoice)(nil),
+		(*OneofVisibility_IgnoredChoice)(nil),
+	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_buf_protoschema_test_v1_test_cases_proto_rawDesc), len(file_buf_protoschema_test_v1_test_cases_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   3,
+			NumMessages:   4,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

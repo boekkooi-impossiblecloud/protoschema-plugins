@@ -1,0 +1,72 @@
+{
+  "$id": "buf.protoschema.test.v1.OneofVisibility.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "allOf": [
+    {
+      "oneOf": [
+        {
+          "required": [
+            "visible_choice"
+          ]
+        },
+        {
+          "required": [
+            "visibleChoice"
+          ]
+        },
+        {
+          "required": [
+            "hidden_choice"
+          ]
+        },
+        {
+          "required": [
+            "hiddenChoice"
+          ]
+        },
+        {
+          "not": {
+            "anyOf": [
+              {
+                "required": [
+                  "visible_choice"
+                ]
+              },
+              {
+                "required": [
+                  "visibleChoice"
+                ]
+              },
+              {
+                "required": [
+                  "hidden_choice"
+                ]
+              },
+              {
+                "required": [
+                  "hiddenChoice"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "patternProperties": {
+    "^(hidden_choice|hiddenChoice)$": {
+      "type": "string"
+    },
+    "^(visibleChoice)$": {
+      "type": "string"
+    }
+  },
+  "properties": {
+    "visible_choice": {
+      "type": "string"
+    }
+  },
+  "title": "Oneof Visibility",
+  "type": "object"
+}

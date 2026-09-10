@@ -321,8 +321,9 @@ func (p *Generator) addOneOfConstraints(entry *msgSchema) error {
 		var names []string
 		for fieldIndex := range oneof.Fields().Len() {
 			field := oneof.Fields().Get(fieldIndex)
-			if p.shouldIgnoreField(field) != FieldVisible {
-				continue // Hidden and ignored fields are not advertised.
+			fieldVisibility := p.shouldIgnoreField(field)
+			if fieldVisibility == FieldIgnore || (fieldVisibility == FieldHide && p.strict) {
+				continue
 			}
 			names = append(names, p.acceptedNames(field)...)
 		}

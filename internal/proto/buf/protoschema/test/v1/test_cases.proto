@@ -67,3 +67,11 @@ message IgnoreField {
   // jsonschema:hide
   NestedReference nested_reference = 5;
 }
+
+message OneofVisibility {
+  oneof pick {
+    string visible_choice = 1;
+    string hidden_choice = 2; // jsonschema:hide
+    string ignored_choice = 3; // jsonschema:ignore
+  }
+}
