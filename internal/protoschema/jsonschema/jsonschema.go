@@ -266,7 +266,7 @@ func (p *Generator) generateMessage(entry *msgSchema) error {
 	p.setDescription(entry.desc, entry.schema)
 
 	var oneOfRules []*validate.MessageOneofRule
-	rules, err := p.getMessageRules(entry.desc)
+	rules, err := protovalidate.ResolveMessageRules(entry.desc)
 	if err != nil {
 		return err
 	}
@@ -579,10 +579,6 @@ func (p *Generator) generateFieldValidation(entry *msgSchema, field protoreflect
 		}
 	}
 	return nil
-}
-
-func (p *Generator) getMessageRules(msg protoreflect.MessageDescriptor) (*validate.MessageRules, error) {
-	return protovalidate.ResolveMessageRules(msg)
 }
 
 func (p *Generator) getFieldRules(field protoreflect.FieldDescriptor) (*validate.FieldRules, error) {
