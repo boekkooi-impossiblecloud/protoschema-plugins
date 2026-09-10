@@ -4,23 +4,13 @@
   "additionalProperties": true,
   "allOf": [
     {
-      "anyOf": [
+      "oneOf": [
         {
-          "not": {
-            "required": [
-              "name"
-            ]
-          },
           "required": [
             "id"
           ]
         },
         {
-          "not": {
-            "required": [
-              "id"
-            ]
-          },
           "required": [
             "name"
           ]

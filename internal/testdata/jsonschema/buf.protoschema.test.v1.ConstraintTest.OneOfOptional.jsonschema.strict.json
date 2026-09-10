@@ -4,32 +4,30 @@
   "additionalProperties": false,
   "allOf": [
     {
-      "anyOf": [
+      "oneOf": [
         {
-          "not": {
-            "required": [
-              "name"
-            ]
-          },
           "required": [
             "id"
           ]
         },
         {
-          "not": {
-            "required": [
-              "id"
-            ]
-          },
           "required": [
             "name"
           ]
         },
         {
           "not": {
-            "required": [
-              "id",
-              "name"
+            "anyOf": [
+              {
+                "required": [
+                  "id"
+                ]
+              },
+              {
+                "required": [
+                  "name"
+                ]
+              }
             ]
           }
         }

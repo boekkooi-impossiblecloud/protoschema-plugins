@@ -403,28 +403,19 @@ func (p *Generator) addOneOfConstraintsToSchema(schema map[string]any, fieldProp
 			continue
 		}
 
-		anyOf := make([]map[string]any, 0, len(properties)+1)
-		for j := range properties {
-			notRequired := make([]string, 0, len(fields)-1)
-			notRequired = append(notRequired, properties[:j]...)
-			notRequired = append(notRequired, properties[j+1:]...)
-			anyOf = append(anyOf, map[string]any{
-				"required": []string{properties[j]},
-				"not": map[string]any{
-					"required": notRequired,
-				},
-			})
+		oneOf := make([]map[string]any, 0, len(properties)+1)
+		for _, property := range properties {
+			oneOf = append(oneOf, map[string]any{"required": []string{property}})
 		}
 
 		if !rule.GetRequired() {
-			anyOf = append(anyOf, map[string]any{
-				"not": map[string]any{
-					"required": properties,
-				},
+			// A oneof that is not required may have no property set.
+			oneOf = append(oneOf, map[string]any{
+				"not": map[string]any{"anyOf": slices.Clone(oneOf)},
 			})
 		}
 		allOf = append(allOf, map[string]any{
-			"anyOf": anyOf,
+			"oneOf": oneOf,
 		})
 
 		// Ensure none of the oneOf fields are required

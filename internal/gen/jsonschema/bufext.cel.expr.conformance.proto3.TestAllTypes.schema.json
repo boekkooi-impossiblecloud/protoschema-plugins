@@ -4,32 +4,30 @@
   "additionalProperties": true,
   "allOf": [
     {
-      "anyOf": [
+      "oneOf": [
         {
-          "not": {
-            "required": [
-              "single_nested_enum"
-            ]
-          },
           "required": [
             "single_nested_message"
           ]
         },
         {
-          "not": {
-            "required": [
-              "single_nested_message"
-            ]
-          },
           "required": [
             "single_nested_enum"
           ]
         },
         {
           "not": {
-            "required": [
-              "single_nested_message",
-              "single_nested_enum"
+            "anyOf": [
+              {
+                "required": [
+                  "single_nested_message"
+                ]
+              },
+              {
+                "required": [
+                  "single_nested_enum"
+                ]
+              }
             ]
           }
         }
