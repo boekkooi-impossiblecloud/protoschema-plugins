@@ -75,3 +75,13 @@ message OneofVisibility {
     string ignored_choice = 3; // jsonschema:ignore
   }
 }
+
+message JSONNameCollision {
+  string foo_bar = 1 [json_name = "foo"];
+  int32 foo = 2 [json_name = "bar"];
+
+  oneof pick {
+    string baz_qux = 3 [json_name = "baz"];
+    string baz = 4 [json_name = "qux"];
+  }
+}

@@ -54,6 +54,7 @@ func GetTestDescriptors(testdataPath string) ([]protoreflect.MessageDescriptor, 
 		"buf.protoschema.test.v1.ConstraintTests",
 		"buf.protoschema.test.v1.Product",
 		"buf.protoschema.test.v1.OneofVisibility",
+		"buf.protoschema.test.v1.JSONNameCollision",
 	}
 
 	msgs := make([]protoreflect.MessageDescriptor, len(fqns))

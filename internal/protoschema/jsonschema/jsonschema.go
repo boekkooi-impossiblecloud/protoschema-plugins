@@ -276,13 +276,10 @@ func (p *Generator) generateMessage(entry *msgSchema) error {
 		if err != nil {
 			return err
 		}
+		names := p.acceptedNames(field)
 		if (rules.GetRequired() && rules.GetIgnore() != validate.Ignore_IGNORE_IF_ZERO_VALUE) || // Required by validate rules.
 			(p.strict && p.hasImplicitDefault(field, field.IsList() || field.IsMap(), rules)) { // Required by strict mode.
-			if p.useJSONNames {
-				required = append(required, field.JSONName())
-			} else {
-				required = append(required, string(field.Name()))
-			}
+			required = append(required, names[0])
 		}
 
 		// Generate the schema.
@@ -290,8 +287,14 @@ func (p *Generator) generateMessage(entry *msgSchema) error {
 		if err != nil {
 			return fmt.Errorf("failed to generate field %q: %w", field.FullName(), err)
 		}
-		// Add the field schema to the properties.
-		aliases := p.addFieldProperties(field, visibility == FieldHide, fieldSchema, properties)
+		// Add the field schema to the properties, or hide it behind an alias.
+		// TODO: Add an option to include custom alias.
+		aliases := names[1:]
+		if visibility == FieldHide {
+			aliases = names
+		} else {
+			properties[names[0]] = fieldSchema
+		}
 		// Add any aliases to the pattern properties.
 		if !p.strict && len(aliases) > 0 {
 			pattern := "^(" + strings.Join(aliases, "|") + ")$"
@@ -353,50 +356,20 @@ func (p *Generator) addOneOfConstraints(entry *msgSchema) error {
 	return nil
 }
 
-// acceptedNames returns every JSON object key that may carry the given field.
+// acceptedNames lists the JSON keys that reach the field, most preferred first.
 func (p *Generator) acceptedNames(field protoreflect.FieldDescriptor) []string {
-	primary, alternate := string(field.Name()), field.JSONName()
-	if p.useJSONNames {
-		primary, alternate = alternate, primary
+	protoName, jsonName := string(field.Name()), field.JSONName()
+	if field.ContainingMessage().Fields().ByJSONName(protoName) != nil {
+		return []string{jsonName}
 	}
-	if p.strict || primary == alternate {
+	primary, alternate := protoName, jsonName
+	if p.useJSONNames {
+		primary, alternate = jsonName, protoName
+	}
+	if p.strict {
 		return []string{primary}
 	}
 	return []string{primary, alternate}
-}
-
-func (p *Generator) addFieldProperties(
-	field protoreflect.FieldDescriptor,
-	hide bool,
-	fieldSchema map[string]any,
-	properties map[string]any) []string {
-	// TODO: Add an option to include custom alias.
-	aliases := make([]string, 0, 1)
-	if p.useJSONNames {
-		// Add the JSON name as the primary name.
-		if hide {
-			aliases = append(aliases, field.JSONName())
-		} else {
-			properties[field.JSONName()] = fieldSchema
-		}
-		// Add the proto name as an alias.
-		if field.JSONName() != string(field.Name()) {
-			aliases = append(aliases, string(field.Name()))
-		}
-		return aliases
-	}
-
-	// Add the proto name as the primary name.
-	if hide {
-		aliases = append(aliases, string(field.Name()))
-	} else {
-		properties[string(field.Name())] = fieldSchema
-	}
-	// Add the JSON name as an alias.
-	if field.JSONName() != string(field.Name()) {
-		aliases = append(aliases, field.JSONName())
-	}
-	return aliases
 }
 
 func (p *Generator) setDescription(desc protoreflect.Descriptor, schema map[string]any) {
