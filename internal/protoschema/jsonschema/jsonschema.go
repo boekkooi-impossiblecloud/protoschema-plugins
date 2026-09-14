@@ -359,15 +359,18 @@ func (p *Generator) addOneOfConstraints(entry *msgSchema) error {
 // acceptedNames lists the JSON keys that reach the field, most preferred first.
 func (p *Generator) acceptedNames(field protoreflect.FieldDescriptor) []string {
 	protoName, jsonName := string(field.Name()), field.JSONName()
-	if field.ContainingMessage().Fields().ByJSONName(protoName) != nil {
-		return []string{jsonName}
-	}
 	primary, alternate := protoName, jsonName
 	if p.useJSONNames {
 		primary, alternate = jsonName, protoName
 	}
+	// Strict schemas describe protojson output, which always uses the primary name.
 	if p.strict {
 		return []string{primary}
+	}
+	// protojson resolves a key by JSON name before proto name, so a proto name
+	// that is another field's JSON name never reaches this field.
+	if field.ContainingMessage().Fields().ByJSONName(protoName) != nil {
+		return []string{jsonName}
 	}
 	return []string{primary, alternate}
 }
