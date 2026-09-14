@@ -367,8 +367,9 @@ func (p *Generator) acceptedNames(field protoreflect.FieldDescriptor) []string {
 	if p.strict {
 		return []string{primary}
 	}
-	// protojson resolves a key by JSON name before proto name, so a proto name
-	// that is another field's JSON name never reaches this field.
+	// protojson resolves a key by jsonName before protoName, so we drop the
+	// protoName if it is already another field's jsonName.
+	// This check also drops protoName if protoName == jsonName.
 	if field.ContainingMessage().Fields().ByJSONName(protoName) != nil {
 		return []string{jsonName}
 	}
